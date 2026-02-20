@@ -1,0 +1,12 @@
+*.egg-info
+dist/
+*.pyc
+.coverage
+coverage.xml
+__pycache__
+*_cache/
+
+.venv
+.env
+TODO.md
+temp
