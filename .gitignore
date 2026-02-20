@@ -5,6 +5,7 @@ dist/
 coverage.xml
 __pycache__
 *_cache/
+db.sqlite3
 
 .venv
 .env
