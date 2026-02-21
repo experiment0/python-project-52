@@ -43,11 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'task_manager',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -60,7 +64,7 @@ ROOT_URLCONF = 'task_manager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,6 +113,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+LANGUAGES = [
+    ("en", "English"),
+    ("ru", "Русский"),
+]
+LOCALE_PATHS = [
+    BASE_DIR / "locale"
+]
 
 TIME_ZONE = 'UTC'
 
@@ -120,4 +131,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# Этот параметр сообщает Django путь URI, по которому статические файлы будут предоставляться пользователям.
+# Здесь они будут доступны по адресу your-domain.onrender.com/static/... или yourcustomdomain.com/static/...
+STATIC_URL = '/static/'
+
+# Этот код может нарушить работу режима разработки, 
+# поэтому проверяем, находимся ли мы в режиме отладки (DEBUG).
+if not DEBUG:
+    # Указываем Django скопировать статические ресурсы в путь с именем `staticfiles` 
+    # (это относится только к функции Render).
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    # Включаем хранилище WhiteNoise, которое сжимает статические файлы для уменьшения использования диска
+    # и переименовывает файлы, присваивая им уникальные имена для каждой версии, 
+    # для поддержки долговременного кэширования.
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

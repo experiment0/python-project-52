@@ -13,6 +13,18 @@ lint:
 fix:
 	@$(RUFF_CHECK) --fix task_manager
 
+# Создает файл task_manager/locale/ru/LC_MESSAGES/django.po для перевода сообщений
+messages:
+	@$(MANAGE) makemessages -l ru
+
+# Компилирует файл task_manager/locale/ru/LC_MESSAGES/django.mo для вывода сообщений
+compilemessages:
+	@$(MANAGE) compilemessages --ignore=.venv
+
+# Преобразование статических файлов
+collectstatic:
+	@$(MANAGE) collectstatic --no-input
+
 # Создает файл с миграциями
 migrations:
 	@$(MANAGE) makemigrations
