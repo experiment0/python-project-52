@@ -21,6 +21,8 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+PROJECT_DIR = BASE_DIR / 'task_manager'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -29,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", default=False)
+DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "webserver", "task-manager-pq7o.onrender.com"]
 
@@ -64,7 +66,7 @@ ROOT_URLCONF = 'task_manager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [PROJECT_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,11 +116,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 LANGUAGES = [
-    ("en", "English"),
-    ("ru", "Русский"),
+    ('en', 'English'),
+    ('ru', 'Русский'),
 ]
 LOCALE_PATHS = [
-    BASE_DIR / "locale"
+    PROJECT_DIR / 'locale'
 ]
 
 TIME_ZONE = 'UTC'
@@ -127,7 +129,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
@@ -135,14 +136,11 @@ USE_TZ = True
 # Здесь они будут доступны по адресу your-domain.onrender.com/static/... или yourcustomdomain.com/static/...
 STATIC_URL = '/static/'
 
-# Этот код может нарушить работу режима разработки, 
-# поэтому проверяем, находимся ли мы в режиме отладки (DEBUG).
-if not DEBUG:
-    # Указываем Django скопировать статические ресурсы в путь с именем `staticfiles` 
-    # (это относится только к функции Render).
-    STATIC_ROOT = BASE_DIR / 'staticfiles'
+# Указываем Django скопировать статические ресурсы в путь с именем `staticfiles` 
+# (это относится только к функции Render).
+STATIC_ROOT = PROJECT_DIR / 'staticfiles'
 
-    # Включаем хранилище WhiteNoise, которое сжимает статические файлы для уменьшения использования диска
-    # и переименовывает файлы, присваивая им уникальные имена для каждой версии, 
-    # для поддержки долговременного кэширования.
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Включаем хранилище WhiteNoise, которое сжимает статические файлы для уменьшения использования диска
+# и переименовывает файлы, присваивая им уникальные имена для каждой версии, 
+# для поддержки долговременного кэширования.
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

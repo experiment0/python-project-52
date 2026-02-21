@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-21 04:34+0300\n"
+"POT-Creation-Date: 2026-02-21 06:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,21 +20,21 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\task_manager\templates\blocks\navigation.html:5
+#: .\task_manager\templates\blocks\navigation.html:6
 #: .\task_manager\templates\index.html:8
 #: .\task_manager\templates\layout.html:10
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: .\task_manager\templates\blocks\navigation.html:12
+#: .\task_manager\templates\blocks\navigation.html:13
 msgid "Users"
 msgstr "Пользователи"
 
-#: .\task_manager\templates\blocks\navigation.html:17
+#: .\task_manager\templates\blocks\navigation.html:18
 msgid "Sign in"
 msgstr "Вход"
 
-#: .\task_manager\templates\blocks\navigation.html:20
+#: .\task_manager\templates\blocks\navigation.html:21
 msgid "Sign up"
 msgstr "Регистрация"
 
