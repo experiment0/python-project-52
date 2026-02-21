@@ -46,4 +46,4 @@ render-start:
 	gunicorn task_manager.wsgi
 
 # Команды, которые могут совпадать с именами директорий и не должны быть с ними перепутаны
-.PHONY: install lint fix migrations migrate build start render-start
+.PHONY: install lint fix messages compilemessages collectstatic migrations migrate build start render-start
