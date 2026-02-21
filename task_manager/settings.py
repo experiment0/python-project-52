@@ -140,7 +140,7 @@ STATIC_URL = '/static/'
 if not DEBUG:
     # Указываем Django скопировать статические ресурсы в путь с именем `staticfiles` 
     # (это относится только к функции Render).
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
 
     # Включаем хранилище WhiteNoise, которое сжимает статические файлы для уменьшения использования диска
     # и переименовывает файлы, присваивая им уникальные имена для каждой версии, 
