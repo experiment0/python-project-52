@@ -2,8 +2,6 @@ from django.urls import path
 
 from task_manager.users import views
 
-# * `GET` `/users/` — страница со списком всех пользователей
-
 # * `GET` `/users/<int:pk>/update/` — страница редактирования пользователя
 # * `POST` `/users/<int:pk>/update/` — обновление пользователя
 
@@ -11,5 +9,6 @@ from task_manager.users import views
 # * `POST` `/users/<int:pk>/delete/` — удаление пользователя
 
 urlpatterns = [
+    path("", views.IndexView.as_view(), name="users_index"),
     path("create/", views.UserCreate.as_view(), name="user_create"),
 ]

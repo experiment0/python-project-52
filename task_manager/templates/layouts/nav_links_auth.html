@@ -1,10 +1,10 @@
 {% load i18n %}
 
-<!-- TODO - прописать урлы через url и добавить перевод. Сделать логику активных ссылок -->
+<!-- TODO - прописать урлы через url и добавить перевод. Сделать логику активных ссылок. + сделать ссылку на редактирование юзера -->
 
 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
-        <a class="nav-link  active" href="/users/">{% translate 'Users' %}</a>
+        <a class="nav-link  active" href="{% url 'users_index' %}">{% translate 'Users' %}</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/statuses/">Статусы</a>

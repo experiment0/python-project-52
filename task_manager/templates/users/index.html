@@ -1,0 +1,41 @@
+{% extends "layouts/application.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate 'Users' %}
+{% endblock %}
+
+{% block header %}
+    {% translate 'Users' %}
+{% endblock %}
+
+<!-- TODO - добавить ссылки через url  -->
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{% translate "id"|upper %}</th>
+                <th>{% translate "username"|capfirst %}</th>
+                <th>{% translate "full name"|capfirst %}</th>
+                <th>{% translate "created date"|capfirst %}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in user_list %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
+                    <td>
+                        <a href="/users/{{ user.id }}/update/">{% translate "Update" %}</a>
+                        <br>
+                        <a href="/users/{{ user.id }}/delete/">{% translate "Delete" %}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -4,14 +4,18 @@ from django.views.generic import (
     CreateView,
     # DeleteView,
     # DetailView,
-    # ListView,
     # UpdateView,
+    ListView,
 )
 
 from task_manager.users.forms import UserCreationAdvancedForm
 
 
-# Create your views here.
+class IndexView(ListView):
+    model = User
+    template_name = "users/index.html"
+
+
 class UserCreate(CreateView):
     model = User
     form_class = UserCreationAdvancedForm

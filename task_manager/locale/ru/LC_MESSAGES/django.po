@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-22 10:50+0300\n"
+"POT-Creation-Date: 2026-02-23 02:49+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,24 +32,58 @@ msgstr "Менеджер задач"
 
 #: .\task_manager\templates\layouts\nav_links_auth.html:7
 #: .\task_manager\templates\layouts\nav_links_guest.html:8
+#: .\task_manager\templates\users\index.html:5
+#: .\task_manager\templates\users\index.html:9
 msgid "Users"
 msgstr "Пользователи"
 
 #: .\task_manager\templates\layouts\nav_links_guest.html:15
-#: .\task_manager\templates\login.html:6 .\task_manager\templates\login.html:10
+#: .\task_manager\templates\login.html:5 .\task_manager\templates\login.html:9
 msgid "Sign in"
 msgstr "Вход"
 
 #: .\task_manager\templates\layouts\nav_links_guest.html:17
-#: .\task_manager\templates\users\create.html:6
-#: .\task_manager\templates\users\create.html:10
+#: .\task_manager\templates\users\create.html:5
+#: .\task_manager\templates\users\create.html:9
 msgid "Sign up"
 msgstr "Регистрация"
 
-#: .\task_manager\templates\login.html:22
+#: .\task_manager\templates\login.html:14
 msgid "Login"
 msgstr "Войти"
 
-#: .\task_manager\templates\users\create.html:22
+#: .\task_manager\templates\users\create.html:12
 msgid "Register"
 msgstr "Зарегистрировать"
+
+#: .\task_manager\templates\users\index.html:18
+msgid "id"
+msgstr "id"
+
+#: .\task_manager\templates\users\index.html:19
+msgid "username"
+msgstr "имя пользователя"
+
+#: .\task_manager\templates\users\index.html:20
+msgid "full name"
+msgstr "полное имя"
+
+#: .\task_manager\templates\users\index.html:21
+msgid "created date"
+msgstr "дата создания"
+
+#: .\task_manager\templates\users\index.html:33
+msgid "Update"
+msgstr "Изменить"
+
+#: .\task_manager\templates\users\index.html:35
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\task_manager\users\forms.py:10
+msgid "first name"
+msgstr "имя"
+
+#: .\task_manager\users\forms.py:15
+msgid "last name"
+msgstr "фамилия"
