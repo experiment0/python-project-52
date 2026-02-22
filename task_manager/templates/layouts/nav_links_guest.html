@@ -1,0 +1,18 @@
+{% load i18n %}
+
+<!-- TODO - прописать урлы через url. Сделать логику активных ссылок -->
+
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/users/">
+            {% translate 'Users' %}
+        </a>
+    </li>
+</ul>
+
+<div class="d-flex">
+    <a href="{% url 'login' %}" class="btn btn-outline-dark me-md-2">
+        {% translate 'Sign in' %}
+    </a>
+    <a href="/users/create/" class="btn btn-outline-primary">{% translate 'Sign up' %}</a>
+</div>

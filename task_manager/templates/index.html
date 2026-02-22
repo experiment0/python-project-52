@@ -1,9 +1,10 @@
-
-{% extends "layout.html" %}
+{% extends "layouts/application.html" %}
 {% load i18n %}
 
-{% block title %}{% translate 'Home page' %}{% endblock %}
+{% block title %}
+    {% translate 'Home page' %}
+{% endblock %}
 
-{% block content %}
-    <h1 class="my-4">{% translate 'Task manager' %}</h1>
+{% block header %}
+    {% translate 'Task manager' %}
 {% endblock %}
