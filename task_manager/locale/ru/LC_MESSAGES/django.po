@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-23 02:49+0300\n"
+"POT-Creation-Date: 2026-02-23 04:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,3 +87,17 @@ msgstr "имя"
 #: .\task_manager\users\forms.py:15
 msgid "last name"
 msgstr "фамилия"
+
+#: .\task_manager\users\views.py:25
+msgid "The user has been successfully registered."
+msgstr "Пользователь успешно зарегистрирован."
+
+#: .\task_manager\views.py:18
+msgid "You are logged in"
+msgstr "Вы залогинены"
+
+#: .\task_manager\views.py:27
+#, fuzzy
+#| msgid "You are logged in"
+msgid "You are logged out"
+msgstr "Вы разлогинены"

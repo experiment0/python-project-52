@@ -8,7 +8,9 @@ from task_manager.users import views
 # * `GET` `/users/<int:pk>/delete/` — страница удаления пользователя
 # * `POST` `/users/<int:pk>/delete/` — удаление пользователя
 
+app_name = 'users'
+
 urlpatterns = [
-    path("", views.IndexView.as_view(), name="users_index"),
-    path("create/", views.UserCreate.as_view(), name="user_create"),
+    path("", views.IndexView.as_view(), name="index"),
+    path("create/", views.UserCreate.as_view(), name="create"),
 ]

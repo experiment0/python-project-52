@@ -35,9 +35,6 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "webserver", "task-manager-pq7o.onrender.com"]
 
-LOGIN_REDIRECT_URL = "index"
-LOGOUT_REDIRECT_URL = "index"
-
 # Application definition
 
 INSTALLED_APPS = [
