@@ -22,3 +22,10 @@ class UserCreationAdvancedForm(UserCreationForm):
         fields = [
             "first_name", "last_name", "username", "password1", "password2",
         ]
+
+
+class UserUpdateAdvancedForm(UserCreationAdvancedForm):
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        
+        return username
