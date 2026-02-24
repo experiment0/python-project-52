@@ -1,0 +1,18 @@
+{
+  "users": {
+    "new": {
+      "first_name": "Hello_new",
+      "last_name": "World_new",
+      "username": "hello_world_new",
+      "password1": "Password-1", 
+      "password2": "Password-1"
+    },
+    "existing": {
+      "first_name": "Hello",
+      "last_name": "World",
+      "username": "hello_world",
+      "password1": "Password-1", 
+      "password2": "Password-1"
+    }
+  }
+}

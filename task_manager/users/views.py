@@ -8,9 +8,8 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (
     CreateView,
-    ListView,
     DeleteView,
-    # DetailView,
+    ListView,
     UpdateView,
 )
 
@@ -55,14 +54,25 @@ class PermissionRequiredAdvancedMixin(PermissionRequiredMixin):
             )
     
     def has_permission(self):
-        auth_username = self.request.user
-        target_user_id = self.kwargs['pk']
-        target_user = User.objects.get(id=int(target_user_id))
-        
-        return auth_username == target_user
+        try:
+            auth_username = self.request.user
+            target_user_id = self.kwargs['pk']            
+            target_user = User.objects.get(id=int(target_user_id))
+            
+            return auth_username == target_user
+        # Конкретная ошибка, которую мы могли бы отловить - 
+        # это self.model.DoesNotExist в случае, 
+        # если юзер с переданным id не существует.
+        # Но родительский метод обработает ее корректно, 
+        # поэтому не отлавливаем этот частный случай.
+        except Exception:            
+            return super().has_permission()
         
 
 class UserUpdate(PermissionRequiredAdvancedMixin, UpdateView):
+    # Список прав нужен, 
+    # чтобы не падал вызов родительского метода has_permission.
+    permission_required = ["users.change_user", "users.delete_user"]
     model = User
     form_class = UserUpdateAdvancedForm
     template_name = "users/update.html"
