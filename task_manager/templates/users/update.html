@@ -9,4 +9,9 @@
     {% translate 'Updating user' %}
 {% endblock %}
 
-{% block button_value %}{% translate 'Update' %}{% endblock %}
+{% block buttons %}
+    <input class="btn btn-primary" type="submit" value="{% translate 'Update' %}">
+    <a href="{% url 'users:delete' user.id %}" class="btn btn-danger">
+        {% translate "Delete" %}
+    </a>
+{% endblock %}
