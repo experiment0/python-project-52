@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import (
     CreateView,
     ListView,
-    # DeleteView,
+    DeleteView,
     # DetailView,
     UpdateView,
 )
@@ -63,7 +63,6 @@ class PermissionRequiredAdvancedMixin(PermissionRequiredMixin):
         
 
 class UserUpdate(PermissionRequiredAdvancedMixin, UpdateView):
-    permission_required = "users.change_user"
     model = User
     form_class = UserUpdateAdvancedForm
     template_name = "users/update.html"
@@ -78,3 +77,20 @@ class UserUpdate(PermissionRequiredAdvancedMixin, UpdateView):
         )
         
         return reverse_lazy("users:index")
+
+
+class UserDelete(PermissionRequiredAdvancedMixin, DeleteView):
+    model = User
+    template_name = "users/delete.html"
+    login_url = reverse_lazy("login")
+    redirect_field_name = None
+    
+    def get_success_url(self):
+        messages.add_message(
+            self.request, 
+            messages.SUCCESS,
+            _("The user has been successfully deleted.")
+        )
+        
+        return reverse_lazy("users:index")
+    

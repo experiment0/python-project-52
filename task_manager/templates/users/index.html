@@ -9,8 +9,6 @@
     {% translate 'Users' %}
 {% endblock %}
 
-<!-- TODO - добавить ссылки через url  -->
-
 {% block content %}
     <table class="table table-striped">
         <thead>
@@ -32,7 +30,7 @@
                     <td>
                         <a href="{% url 'users:update' user.id %}">{% translate "Update" %}</a>
                         <br>
-                        <a href="/users/{{ user.id }}/delete/">{% translate "Delete" %}</a>
+                        <a href="{% url 'users:delete' user.id %}">{% translate "Delete" %}</a>
                     </td>
                 </tr>
             {% endfor %}

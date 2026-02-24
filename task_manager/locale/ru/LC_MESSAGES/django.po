@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-24 02:49+0300\n"
+"POT-Creation-Date: 2026-02-24 04:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,14 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: .\task_manager\templates\404.html:5 .\task_manager\templates\404.html:9
+msgid "Error 404"
+msgstr "Ошибка 404"
+
+#: .\task_manager\templates\404.html:13
+msgid "Page not found."
+msgstr "Страница не найдена."
+
 #: .\task_manager\templates\index.html:5
 msgid "Home page"
 msgstr "Главная страница"
@@ -29,6 +37,14 @@ msgstr "Главная страница"
 #: .\task_manager\templates\layouts\navigation.html:8
 msgid "Task manager"
 msgstr "Менеджер задач"
+
+#: .\task_manager\templates\layouts\confirm_delete.html:5
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: .\task_manager\templates\layouts\confirm_delete.html:9
+msgid "Yes, delete"
+msgstr "Да, удалить"
 
 #: .\task_manager\templates\layouts\nav_links_auth.html:7
 #: .\task_manager\templates\layouts\nav_links_guest.html:8
@@ -56,28 +72,33 @@ msgstr "Войти"
 msgid "Register"
 msgstr "Зарегистрировать"
 
-#: .\task_manager\templates\users\index.html:18
+#: .\task_manager\templates\users\delete.html:5
+#: .\task_manager\templates\users\delete.html:9
+msgid "Deleting a user"
+msgstr "Удаление пользователя"
+
+#: .\task_manager\templates\users\index.html:16
 msgid "id"
 msgstr "id"
 
-#: .\task_manager\templates\users\index.html:19
+#: .\task_manager\templates\users\index.html:17
 msgid "username"
 msgstr "имя пользователя"
 
-#: .\task_manager\templates\users\index.html:20
+#: .\task_manager\templates\users\index.html:18
 msgid "full name"
 msgstr "полное имя"
 
-#: .\task_manager\templates\users\index.html:21
+#: .\task_manager\templates\users\index.html:19
 msgid "created date"
 msgstr "дата создания"
 
-#: .\task_manager\templates\users\index.html:33
+#: .\task_manager\templates\users\index.html:31
 #: .\task_manager\templates\users\update.html:12
 msgid "Update"
 msgstr "Изменить"
 
-#: .\task_manager\templates\users\index.html:35
+#: .\task_manager\templates\users\index.html:33
 msgid "Delete"
 msgstr "Удалить"
 
@@ -94,21 +115,25 @@ msgstr "имя"
 msgid "last name"
 msgstr "фамилия"
 
-#: .\task_manager\users\views.py:34
+#: .\task_manager\users\views.py:33
 msgid "The user has been successfully registered."
 msgstr "Пользователь успешно зарегистрирован."
 
-#: .\task_manager\users\views.py:53
+#: .\task_manager\users\views.py:42
 msgid "You are not logged in! Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: .\task_manager\users\views.py:60
+#: .\task_manager\users\views.py:50
 msgid "You do not have permission to modify another user."
 msgstr "У вас нет прав для изменения другого пользователя."
 
-#: .\task_manager\users\views.py:89
+#: .\task_manager\users\views.py:76
 msgid "User successfully changed"
 msgstr "Пользователь успешно изменен"
+
+#: .\task_manager\users\views.py:93
+msgid "The user has been successfully deleted."
+msgstr "Пользователь успешно удален."
 
 #: .\task_manager\views.py:19
 msgid "You are logged in"

@@ -1,0 +1,14 @@
+{% extends "layouts/application.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate 'Error 404' %}
+{% endblock %}
+
+{% block header %}
+    {% translate 'Error 404' %}
+{% endblock %}
+
+{% block content %}
+    <p>{% translate 'Page not found.' %}</p>
+{% endblock %}
