@@ -52,6 +52,7 @@ class TaskStatusUpdate(
     success_message = _("Status changed successfully")
 
 
+# TODO - Статус нельзя удалить, если он связан хотя бы с одной задачей
 class TaskStatusDelete(
     LoginRequiredAdvancedMixin, SuccessMessageMixin, DeleteView
 ):
