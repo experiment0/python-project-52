@@ -14,5 +14,13 @@
       "password1": "Password-1", 
       "password2": "Password-1"
     }
+  },
+  "statuses": {
+    "new":{ 
+      "name": "new_status"
+    },
+    "existing": {
+      "name": "created"
+    }
   }
 }
