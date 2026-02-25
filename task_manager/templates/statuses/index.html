@@ -1,0 +1,43 @@
+{% extends "layouts/application.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate 'Statuses' %}
+{% endblock %}
+
+{% block header %}
+    {% translate 'Statuses' %}
+{% endblock %}
+
+{% block content %}
+<a class="btn btn-primary mb-3" href="{% url 'statuses:create' %}">{% translate 'Create a status' %}</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{% translate "id"|upper %}</th>
+            <th>{% translate "name"|capfirst %}</th>
+            <th>{% translate "created date"|capfirst %}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for status in taskstatus_list %}
+        <tr>
+            <td>{{ status.id }}</td>
+            <td>{{ status.name }}</td>
+            <td>{{ status.created_at|date:"d.m.Y H:i" }}</td>
+            <td>
+                <a href="{% url 'statuses:update' status.id %}">
+                    {% translate "Update" %}
+                </a>
+                <br>
+                <a href="{% url 'statuses:delete' status.id %}">
+                    {% translate "Delete" %}
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

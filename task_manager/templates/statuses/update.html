@@ -1,0 +1,17 @@
+{% extends "layouts/form.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate 'Updating status' %}
+{% endblock %}
+
+{% block header %}
+    {% translate 'Updating status' %}
+{% endblock %}
+
+{% block buttons %}
+    <input class="btn btn-primary" type="submit" value="{% translate 'Update' %}">
+    <a href="{% url 'statuses:delete' taskstatus.id %}" class="btn btn-danger">
+        {% translate "Delete" %}
+    </a>
+{% endblock %}
