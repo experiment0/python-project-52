@@ -1,0 +1,56 @@
+{% extends "layouts/application.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate 'Tasks' %}
+{% endblock %}
+
+{% block header %}
+    {% translate 'Tasks' %}
+{% endblock %}
+
+{% block content %}
+<a class="btn btn-primary mb-3" href="{% url 'tasks:create' %}">{% translate 'Create a task' %}</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{% translate "id"|upper %}</th>
+            <th>{% translate "name"|capfirst %}</th>
+            <th>{% translate "status"|capfirst %}</th>
+            <th>{% translate "author"|capfirst %}</th>
+            <th>{% translate "executor"|capfirst %}</th>
+            <th>{% translate "created date"|capfirst %}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in task_list %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>
+                    <a href="{% url 'tasks:detail' task.id %}">
+                        {{ task.name }}
+                    </a>
+                </td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.author.get_full_name }}</td>
+                <td>{{ task.executor.get_full_name }}</td>
+                <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
+                <td>                    
+                    <a href="{% url 'tasks:update' task.id %}">
+                        {% translate "Update" %}
+                    </a>
+                    <br>
+                    <a 
+                        href="{% url 'tasks:delete' task.id %}" 
+                        class="{% if task.author.id != request.user.id %}link-secondary{% endif %}"
+                    >
+                        {% translate "Delete" %}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

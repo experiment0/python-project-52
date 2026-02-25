@@ -32,7 +32,7 @@ class UserCreate(SuccessMessageMixin, CreateView):
     success_message = _("The user has been successfully registered.")
 
 
-class PermissionRequiredAdvancedMixin(PermissionRequiredMixin):
+class PermissionRequiredMixinForAuthorshipVerification(PermissionRequiredMixin):
     def handle_no_permission(self):
         if not self.request.user.is_authenticated:
             messages.add_message(
@@ -40,7 +40,6 @@ class PermissionRequiredAdvancedMixin(PermissionRequiredMixin):
                 messages.ERROR,
                 _("You are not logged in! Please log in.")
             )
-            
             return super().handle_no_permission()
         else:
             messages.add_message(
@@ -48,7 +47,6 @@ class PermissionRequiredAdvancedMixin(PermissionRequiredMixin):
                 messages.ERROR,
                 _("You do not have permission to modify another user.")
             )
-            
             return HttpResponseRedirect(
                 resolve_url("users:index")
             )
@@ -58,8 +56,8 @@ class PermissionRequiredAdvancedMixin(PermissionRequiredMixin):
             auth_username = self.request.user
             target_user_id = self.kwargs['pk']            
             target_user = User.objects.get(id=int(target_user_id))
-            
             return auth_username == target_user
+
         # Конкретная ошибка, которую мы могли бы отловить - 
         # это self.model.DoesNotExist в случае, 
         # если юзер с переданным id не существует.
@@ -67,12 +65,12 @@ class PermissionRequiredAdvancedMixin(PermissionRequiredMixin):
         # поэтому не отлавливаем этот частный случай.
         except Exception:            
             return super().has_permission()
-        
 
-class UserUpdate(PermissionRequiredAdvancedMixin, UpdateView):
+
+class UserUpdate(PermissionRequiredMixinForAuthorshipVerification, UpdateView):
     # Список прав нужен, 
     # чтобы не падал вызов родительского метода has_permission.
-    permission_required = ["users.change_user", "users.delete_user"]
+    permission_required = ["users.change_user"]
     model = User
     form_class = UserUpdateAdvancedForm
     template_name = "users/update.html"
@@ -85,11 +83,13 @@ class UserUpdate(PermissionRequiredAdvancedMixin, UpdateView):
             messages.SUCCESS,
             _("User successfully changed")
         )
-        
         return reverse_lazy("users:index")
 
 
-class UserDelete(PermissionRequiredAdvancedMixin, DeleteView):
+class UserDelete(PermissionRequiredMixinForAuthorshipVerification, DeleteView):
+    # Список прав нужен, 
+    # чтобы не падал вызов родительского метода has_permission.
+    permission_required = ["users.delete_user"]
     model = User
     template_name = "users/delete.html"
     login_url = reverse_lazy("login")
@@ -101,6 +101,5 @@ class UserDelete(PermissionRequiredAdvancedMixin, DeleteView):
             messages.SUCCESS,
             _("The user has been successfully deleted.")
         )
-        
         return reverse_lazy("users:index")
     

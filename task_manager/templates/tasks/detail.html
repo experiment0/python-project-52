@@ -1,0 +1,55 @@
+{% extends "layouts/application.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate 'View task' %} "{{ task.name }}"
+{% endblock %}
+
+{% block header %}
+    {% translate 'View task' %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-secondary text-white">
+        <h2>{{ task.name }}</h2>
+    </div>
+    <div class="card-body bg-light">
+        <div>{{ task.description }}</div>
+        <hr>
+        <div class="container">
+            <div class="row p-1">
+                <div class="col">{% translate "author"|capfirst %}</div>
+                <div class="col">{{ task.author.get_full_name }}</div>
+            </div>
+            <div class="row p-1">
+                <div class="col">{% translate "executor"|capfirst %}</div>
+                <div class="col">{{ task.executor.get_full_name }}</div>
+            </div>
+            <div class="row p-1">
+                <div class="col">{% translate "status"|capfirst %}</div>
+                <div class="col">{{ task.status }}</div>
+            </div>
+            <div class="row p-1">
+                <div class="col">{% translate "created date"|capfirst %}</div>
+                <div class="col">{{ task.created_at|date:"d.m.Y H:i" }}</div>
+            </div>
+            <div class="row p-1">
+                <div class="col">
+                    <h6>{% translate "labels"|capfirst %}:</h6>
+                    <!-- <ul> <li>label-1</li> </ul> -->
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <a href="{% url 'tasks:update' task.id %}" class="btn btn-primary">
+                {% translate 'Update' %}
+            </a>
+            <a href="{% url 'tasks:delete' task.id %}" class="btn btn-danger">
+                {% translate "Delete" %}
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

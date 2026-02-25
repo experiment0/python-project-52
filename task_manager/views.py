@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -28,3 +29,16 @@ class LogoutAdvancedView(LogoutView):
         )
         
         return reverse_lazy("index")
+
+
+class LoginRequiredMixinWithMessage(LoginRequiredMixin):
+    login_url = reverse_lazy("login")
+    redirect_field_name = None
+
+    def get_login_url(self):
+        messages.add_message(
+            self.request, 
+            messages.ERROR,
+            _("You are not logged in! Please log in.")
+        )        
+        return super().get_login_url()

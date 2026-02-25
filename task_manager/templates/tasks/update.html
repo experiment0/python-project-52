@@ -1,0 +1,17 @@
+{% extends "layouts/form.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate 'Changing a task' %}
+{% endblock %}
+
+{% block header %}
+    {% translate 'Changing a task' %}
+{% endblock %}
+
+{% block buttons %}
+    <input class="btn btn-primary" type="submit" value="{% translate 'Update' %}">
+    <a href="{% url 'tasks:delete' task.id %}" class="btn btn-danger">
+        {% translate "Delete" %}
+    </a>
+{% endblock %}
