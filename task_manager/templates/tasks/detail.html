@@ -37,7 +37,11 @@
             <div class="row p-1">
                 <div class="col">
                     <h6>{% translate "labels"|capfirst %}:</h6>
-                    <!-- <ul> <li>label-1</li> </ul> -->
+                    <ul>
+                        {% for label in task.labels.all %}
+                            <li>{{ label }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
