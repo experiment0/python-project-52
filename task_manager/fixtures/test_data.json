@@ -4,23 +4,49 @@
       "first_name": "Hello_new",
       "last_name": "World_new",
       "username": "hello_world_new",
-      "password1": "Password-1", 
+      "password1": "Password-1",
       "password2": "Password-1"
     },
-    "existing": {
+    "existing_without_tasks": {
+      "first_name": "Hello1",
+      "last_name": "World1",
+      "username": "hello_world_1",
+      "password1": "Password-1",
+      "password2": "Password-1"
+    },
+    "existing_with_tasks": {
       "first_name": "Hello",
       "last_name": "World",
       "username": "hello_world",
-      "password1": "Password-1", 
+      "password1": "Password-1",
       "password2": "Password-1"
     }
   },
   "statuses": {
-    "new":{ 
+    "new": {
       "name": "new_status"
     },
-    "existing": {
+    "existing_free_task": {
+      "name": "completed"
+    },
+    "existing_related_task": {
       "name": "created"
+    }
+  },
+  "tasks": {
+    "new": {
+      "name": "Задача 5",
+      "description": "Описание задачи 5.",
+      "status": 1,
+      "author": 18,
+      "executor": 1
+    },
+    "existing": {
+      "name": "Задача 2",
+      "description": "Описание задачи 2.",
+      "status": 1,
+      "author": 15,
+      "executor": 15
     }
   }
 }

@@ -159,8 +159,9 @@ class StatusesTest(TestCaseAdvanced):
         # Проверяем, что страница доступна
         self.assertEqual(delete_page_response.status_code, 200)
         
-    def test_delete(self):
-        """Проверяет корректность процесса удаления статуса
+    def test_delete_status_free_task(self):
+        """Проверяет корректность процесса удаления статуса,
+        который не привязан к задачам
         """
         # Авторизуемся под существующим пользователем
         self._login_exist_user()
@@ -180,3 +181,29 @@ class StatusesTest(TestCaseAdvanced):
         # Проверяем, что статуса нет в базе
         with self.assertRaises(ObjectDoesNotExist):
             TaskStatus.objects.get(name=self._exist_status["name"])
+    
+    def test_delete_status_related_task(self):
+        """Проверяет корректность процесса удаления статуса,
+        который привязан к задаче
+        """
+        # Авторизуемся под существующим пользователем
+        self._login_exist_user()
+        
+        # Данные статуса из фикстуры
+        status_data = self.test_data["statuses"]["existing_related_task"]
+        
+        # Получаем статус из базы
+        status = TaskStatus.objects.get(name=status_data["name"])
+        
+        # Делаем запрос на удаление статуса
+        delete_response = self.client.post(
+            reverse("statuses:delete", args=[status.pk])
+        )
+        
+        # Проверяем, что мы были перенаправлены 
+        # на страницу со списком статусов
+        self.assertRedirects(delete_response, reverse("statuses:index"))
+        
+        # Проверяем, что статус по прежнему есть в базе
+        status = TaskStatus.objects.get(name=status_data["name"])
+        self.assertStatus(status, status_data)

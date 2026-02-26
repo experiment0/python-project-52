@@ -12,7 +12,7 @@ class TestCaseAdvanced(TestCase):
     """
     
     # Указываем имена фикстур для загрузки в БД
-    fixtures = ["users.json", "statuses.json"]
+    fixtures = ["users.json", "statuses.json", "tasks.json"]
     
     @classmethod
     def setUpTestData(cls):
@@ -22,30 +22,57 @@ class TestCaseAdvanced(TestCase):
     
     @property
     def _exist_user(self) -> dict:
-        """Возвращает из фикстуры данные существующего пользователя.
+        """Возвращает из фикстуры данные существующего пользователя без задач.
 
         Returns:
-            dict: данные существующего пользователя
+            dict: данные существующего пользователя без задач
         """
-        return self.test_data["users"]["existing"]
+        return self.test_data["users"]["existing_without_tasks"]
     
     @property
     def _exist_status(self) -> dict:
-        """Возвращает из фикстуры данные существующего статуса.
+        """Возвращает из фикстуры данные существующего статуса, 
+        не привязанного к задачам.
 
         Returns:
-            dict: данные существующего статуса
+            dict: данные существующего статуса, не привязанного к задачам
         """
-        return self.test_data["statuses"]["existing"]
+        return self.test_data["statuses"]["existing_free_task"]
+    
+    @property
+    def _exist_task(self) -> dict:
+        """Возвращает из фикстуры данные существующей задачи.
+
+        Returns:
+            dict: данные существующей задачи
+        """
+        return self.test_data["tasks"]["existing"]
         
     def _login_exist_user(self):
-        """Выполняет авторизацию под данными существующего пользователя
+        """Выполняет авторизацию под данными существующего пользователя,
+        у которого нет задач
         """
         # Делаем запрос на авторизацию
         login_response = self.client.post(
             reverse("login"), {
                 "username": self._exist_user["username"],
                 "password": self._exist_user["password1"],
+            }
+        )        
+        # Проверяем, что мы были перенаправлены главную страницу
+        self.assertRedirects(login_response, reverse("index"))
+    
+    def _login_exist_user_with_tasks(self):
+        """Выполняет авторизацию под данными существующего пользователя,
+        у которого есть задачи
+        """
+        # Пользователь, который создавал задачи
+        user_with_tasks = self.test_data["users"]["existing_with_tasks"]
+        # Делаем запрос на авторизацию
+        login_response = self.client.post(
+            reverse("login"), {
+                "username": user_with_tasks["username"],
+                "password": user_with_tasks["password1"],
             }
         )        
         # Проверяем, что мы были перенаправлены главную страницу

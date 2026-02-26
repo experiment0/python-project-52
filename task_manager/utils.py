@@ -12,7 +12,7 @@ def get_fixture_path(file_name: str) -> str:
 
 
 def read(file_path: str) -> str:
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         content = file.read()
         
     return content

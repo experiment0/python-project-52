@@ -34,5 +34,23 @@
       "groups": [],
       "user_permissions": []
     }
+  },
+  {
+    "model": "auth.user",
+    "pk": 18,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$17Jf45yAcesBVpY2YJ1HIY$0Wfh3/PE0/FcEL0+3xrGlHayXYeAUIlIuKotfbLBqko=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "hello_world_1",
+      "first_name": "Hello1",
+      "last_name": "World1",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-02-26T01:32:24.280Z",
+      "groups": [],
+      "user_permissions": []
+    }
   }
 ]

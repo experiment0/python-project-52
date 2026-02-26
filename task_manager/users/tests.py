@@ -144,8 +144,9 @@ class UsersTest(TestCaseAdvanced):
         # Проверяем, что страница доступна
         self.assertEqual(delete_page_response.status_code, 200)
         
-    def test_delete(self):
-        """Проверяет корректность процесса удаления пользователя
+    def test_delete_user_without_tasks(self):
+        """Проверяет корректность процесса удаления пользователя,
+        у которого нет созданных задач
         """
         # Получаем существующего пользователя из базы
         exist_user = User.objects.get(username=self._exist_user["username"])
@@ -165,3 +166,29 @@ class UsersTest(TestCaseAdvanced):
         # Проверяем, что пользователя нет в базе
         with self.assertRaises(ObjectDoesNotExist):
             User.objects.get(username=self._exist_user["username"])
+    
+    def test_delete_user_with_tasks(self):
+        """Проверяет корректность процесса удаления пользователя,
+        у которого есть созданные задачи
+        """
+        # Авторизуемся под пользователем
+        self._login_exist_user_with_tasks()
+        
+        # Данные пользователя из фикстуры
+        user_data = self.test_data["users"]["existing_with_tasks"]
+        
+        # Получаем пользователя из базы
+        user = User.objects.get(username=user_data["username"])
+        
+        # Делаем запрос на удаление пользователя
+        delete_response = self.client.post(
+            reverse("users:delete", args=[user.pk])
+        )
+        
+        # Проверяем, что мы были перенаправлены 
+        # на страницу со списком пользователей
+        self.assertRedirects(delete_response, reverse("users:index"))
+        
+        # Проверяем, что пользователь по прежнему есть в базе
+        user = User.objects.get(username=user_data["username"])
+        self.assertUser(user, user_data)
