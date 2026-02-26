@@ -2,18 +2,18 @@
 {% load i18n %}
 
 {% block title %}
-    {% translate 'Updating status' %}
+    {% translate 'Updating label' %}
 {% endblock %}
 
 {% block header %}
-    {% translate 'Updating status' %}
+    {% translate 'Updating label' %}
 {% endblock %}
 
 {% block form_wrapper_class %}col-lg-6{% endblock %}
 
 {% block buttons %}
     <input class="btn btn-primary" type="submit" value="{% translate 'Update' %}">
-    <a href="{% url 'statuses:delete' taskstatus.id %}" class="btn btn-danger">
+    <a href="{% url 'labels:delete' label.id %}" class="btn btn-danger">
         {% translate "Delete" %}
     </a>
 {% endblock %}

@@ -42,22 +42,25 @@ class TaskStatusUpdate(
 
 
 class TaskStatusDelete(
-    LoginRequiredMixinWithMessage, SuccessMessageMixin, DeleteView
+    LoginRequiredMixinWithMessage, DeleteView
 ):
     model = TaskStatus
     template_name = "statuses/delete.html"
     success_url = reverse_lazy("statuses:index")
-    success_message = _("Status successfully deleted")
     
     def form_valid(self, form):
         success_url = self.get_success_url()
         try:
             self.object.delete()
+            messages.add_message(
+                self.request, 
+                messages.SUCCESS,
+                _("Status successfully deleted")
+            )
         except RestrictedError:
             messages.add_message(
                 self.request, 
                 messages.ERROR,
-                # 
                 _("The status cannot be deleted because it is in use.")
             )
         return HttpResponseRedirect(success_url)
