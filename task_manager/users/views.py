@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import RestrictedError
 from django.http import HttpResponseRedirect
 from django.shortcuts import resolve_url
 from django.urls import reverse_lazy
@@ -94,12 +95,22 @@ class UserDelete(PermissionRequiredMixinForAuthorshipVerification, DeleteView):
     template_name = "users/delete.html"
     login_url = reverse_lazy("login")
     redirect_field_name = None
+    success_url = reverse_lazy("users:index")
     
-    def get_success_url(self):
-        messages.add_message(
-            self.request, 
-            messages.SUCCESS,
-            _("The user has been successfully deleted.")
-        )
-        return reverse_lazy("users:index")
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        try:
+            self.object.delete()
+            messages.add_message(
+                self.request, 
+                messages.SUCCESS,
+                _("The user has been successfully deleted.")
+            )
+        except RestrictedError:
+            messages.add_message(
+                self.request, 
+                messages.ERROR,
+                _("The user cannot be deleted because it is in use.")
+            )
+        return HttpResponseRedirect(success_url)
     
