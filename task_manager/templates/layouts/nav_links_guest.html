@@ -1,13 +1,16 @@
 {% load i18n %}
 
-<!-- TODO - Сделать логику активных ссылок -->
-
 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'users:index' %}">
-            {% translate 'Users' %}
-        </a>
-    </li>
+    {% with request.resolver_match.namespace as namespace %}
+        <li class="nav-item">
+            <a 
+                class="nav-link {% if namespace == 'users' %}active{% endif %}" 
+                href="{% url 'users:index' %}"
+            >
+                {% translate 'Users' %}
+            </a>
+        </li>
+    {% endwith %}
 </ul>
 
 <div class="d-flex">

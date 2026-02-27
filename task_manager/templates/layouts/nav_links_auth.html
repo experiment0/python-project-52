@@ -1,20 +1,40 @@
 {% load i18n %}
 
-<!-- TODO - Сделать логику активных ссылок. -->
-
 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-    <li class="nav-item">
-        <a class="nav-link  active" href="{% url 'users:index' %}">{% translate 'Users' %}</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'statuses:index' %}">{% translate 'Statuses' %}</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'labels:index' %}">{% translate 'Labels' %}</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'tasks:index' %}">{% translate 'Tasks' %}</a>
-    </li>
+    {% with request.resolver_match.namespace as namespace %}
+        <li class="nav-item">
+            <a 
+                class="nav-link {% if namespace == 'users' %}active{% endif %}" 
+                href="{% url 'users:index' %}"
+            >
+                {% translate 'Users' %}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a 
+                class="nav-link {% if namespace == 'statuses' %}active{% endif %}" 
+                href="{% url 'statuses:index' %}"
+            >
+                {% translate 'Statuses' %}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a 
+                class="nav-link {% if namespace == 'labels' %}active{% endif %}" 
+                href="{% url 'labels:index' %}"
+            >
+                {% translate 'Labels' %}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a 
+                class="nav-link {% if namespace == 'tasks' %}active{% endif %}" 
+                href="{% url 'tasks:index' %}"
+            >
+                {% translate 'Tasks' %}
+            </a>
+        </li>
+    {% endwith %}
 </ul>
 
 <div class="d-flex">
