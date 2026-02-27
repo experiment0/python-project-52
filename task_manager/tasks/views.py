@@ -22,9 +22,8 @@ from task_manager.views import LoginRequiredMixinWithMessage
 class IndexView(LoginRequiredMixinWithMessage, FilterView):
     model = Task
     template_name = "tasks/index.html"
+    filterset_class = TaskFilter
     context_object_name = "tasks"
-    filter_class = TaskFilter
-    filterset_fields = ["status", "author", "executor", "labels"]
     extra_context = {
         "title": _("Tasks"),
     }

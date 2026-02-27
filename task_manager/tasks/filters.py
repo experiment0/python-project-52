@@ -1,11 +1,29 @@
-from django_filters import FilterSet
+from django import forms
+from django.utils.translation import gettext_lazy as _
+from django_filters import BooleanFilter, FilterSet, ModelChoiceFilter
 
+from task_manager.labels.models import Label
 from task_manager.tasks.models import Task
 
 
 class TaskFilter(FilterSet):
+    labels = ModelChoiceFilter(
+        label=_('Label'),
+        queryset=Label.objects.all(),
+    )
+    
+    is_own_tasks = BooleanFilter(
+        label=_("Only own tasks"),
+        method="get_own_tasks",
+        widget=forms.CheckboxInput,
+    )
+    
+    def get_own_tasks(self, queryset, name, value):
+        if value:
+            user = self.request.user
+            return queryset.filter(author=user)
+        return queryset
+    
     class Meta:
         model = Task
-        # Значение данного поля ни на что не влияет, поэтому оставим его пустым
-        # Но оно должно быть задано, иначе фильтр падает с ошибкой
-        fields = []
+        fields = ["status", "executor"]

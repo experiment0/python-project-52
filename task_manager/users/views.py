@@ -101,7 +101,7 @@ class UserDelete(PermissionRequiredMixinForAuthorshipVerification, DeleteView):
     # чтобы не падал вызов родительского метода has_permission.
     permission_required = ["users.delete_user"]
     model = User
-    template_name = "users/delete.html"
+    template_name = "layouts/confirm_delete.html"
     login_url = reverse_lazy("login")
     redirect_field_name = None
     success_url = reverse_lazy("users:index")
