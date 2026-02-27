@@ -37,8 +37,8 @@ class TasksTest(TestCaseAdvanced):
         self.assertEqual(index_page_response.status_code, 200)
         
         # Проверяем наличие данных в контексте шаблона
-        self.assertIn("task_list", index_page_response.context)
-        task_list = index_page_response.context["task_list"]
+        self.assertIn("filter", index_page_response.context)
+        task_list = index_page_response.context["filter"].qs
 
         # Получаем задачи из базы
         tasks = Task.objects.all()

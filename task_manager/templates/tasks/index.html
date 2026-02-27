@@ -1,4 +1,5 @@
 {% extends "layouts/application.html" %}
+{% load django_bootstrap5 %}
 {% load i18n %}
 
 {% block title %}
@@ -10,7 +11,28 @@
 {% endblock %}
 
 {% block content %}
-<a class="btn btn-primary mb-3" href="{% url 'tasks:create' %}">{% translate 'Create a task' %}</a>
+<a class="btn btn-primary mb-3" href="{% url 'tasks:create' %}">
+    {% translate "Create a task" %}
+</a>
+
+<div class="card mb-3">
+    <div class="card-body bg-light">
+        <strong>{% translate "Select filter options" %}</strong>
+        <hr>
+        <form method="get"  class="form">
+            {% bootstrap_form filter.form layout='horizontal' %}
+            <hr>
+            <input 
+                class="btn btn-primary" 
+                type="submit" 
+                value="{% translate 'Show' %}"
+            >
+            <a class="btn btn-secondary" href="{% url 'tasks:index' %}">
+                {% translate "Reset" %}
+            </a>
+        </form>
+    </div>
+</div>
 
 <table class="table table-striped">
     <thead>
@@ -25,7 +47,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for task in task_list %}
+        {% for task in filter.qs %}
             <tr>
                 <td>{{ task.id }}</td>
                 <td>

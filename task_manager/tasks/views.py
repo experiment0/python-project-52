@@ -9,18 +9,22 @@ from django.views.generic import (
     CreateView,
     DeleteView,
     DetailView,
-    ListView,
     UpdateView,
 )
+from django_filters.views import FilterView
 
+from task_manager.tasks.filters import TaskFilter
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
 from task_manager.views import LoginRequiredMixinWithMessage
 
 
-class IndexView(LoginRequiredMixinWithMessage, ListView):
+class IndexView(LoginRequiredMixinWithMessage, FilterView):
     model = Task
     template_name = "tasks/index.html"
+    context_object_name = "tasks"
+    filter_class = TaskFilter
+    filterset_fields = ["status", "author", "executor", "labels"]
   
 
 class TaskDetail(LoginRequiredMixinWithMessage, DetailView):
