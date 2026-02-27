@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}{% endblock %} | {% translate 'Task manager' %}</title>
+        <title>{% block title %}{{ title }}{% endblock %} | {% translate 'Task manager' %}</title>
         {% bootstrap_css %}        
     </head>
 
@@ -18,7 +18,7 @@
             {% bootstrap_messages %}
 
             <h1 class="my-4">
-                {% block header %}{% endblock %}
+                {% block header %}{{ title }}{% endblock %}
             </h1>
 
             {% block content %}{% endblock %}

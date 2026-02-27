@@ -23,6 +23,9 @@ from task_manager.users.forms import (
 class IndexView(ListView):
     model = User
     template_name = "users/index.html"
+    extra_context = {
+        "title": _("Users"),
+    }
 
 
 class UserCreate(SuccessMessageMixin, CreateView):
@@ -31,6 +34,9 @@ class UserCreate(SuccessMessageMixin, CreateView):
     template_name = "users/create.html"
     success_url = reverse_lazy("login")
     success_message = _("The user has been successfully registered.")
+    extra_context = {
+        "title": _("Sign up"),
+    }
 
 
 class PermissionRequiredMixinForAuthorshipVerification(PermissionRequiredMixin):
@@ -77,6 +83,9 @@ class UserUpdate(PermissionRequiredMixinForAuthorshipVerification, UpdateView):
     template_name = "users/update.html"
     login_url = reverse_lazy("login")
     redirect_field_name = None
+    extra_context = {
+        "title": _("Updating user"),
+    }
     
     def get_success_url(self):
         messages.add_message(
@@ -96,6 +105,9 @@ class UserDelete(PermissionRequiredMixinForAuthorshipVerification, DeleteView):
     login_url = reverse_lazy("login")
     redirect_field_name = None
     success_url = reverse_lazy("users:index")
+    extra_context = {
+        "title": _("Deleting a user"),
+    }
     
     def form_valid(self, form):
         success_url = self.get_success_url()

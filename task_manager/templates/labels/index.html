@@ -1,14 +1,6 @@
 {% extends "layouts/application.html" %}
 {% load i18n %}
 
-{% block title %}
-    {% translate 'Labels' %}
-{% endblock %}
-
-{% block header %}
-    {% translate 'Labels' %}
-{% endblock %}
-
 {% block content %}
 <a class="btn btn-primary mb-3" href="{% url 'labels:create' %}">{% translate 'Create a label' %}</a>
 

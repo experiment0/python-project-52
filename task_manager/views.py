@@ -9,10 +9,16 @@ from django.views.generic.base import TemplateView
 
 class IndexView(TemplateView):
     template_name = "index.html"
+    extra_context = {
+        "title": _("Home page"),
+    }
 
 
 class LoginAdvancedView(SuccessMessageMixin, LoginView):
     template_name = "login.html"
+    extra_context = {
+        "title": _("Sign in"),
+    }
     
     def get_success_url(self):
         return reverse_lazy("index")
@@ -34,7 +40,7 @@ class LogoutAdvancedView(LogoutView):
 class LoginRequiredMixinWithMessage(LoginRequiredMixin):
     login_url = reverse_lazy("login")
     redirect_field_name = None
-
+    
     def get_login_url(self):
         messages.add_message(
             self.request, 

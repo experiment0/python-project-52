@@ -2,14 +2,6 @@
 {% load django_bootstrap5 %}
 {% load i18n %}
 
-{% block title %}
-    {% translate 'Tasks' %}
-{% endblock %}
-
-{% block header %}
-    {% translate 'Tasks' %}
-{% endblock %}
-
 {% block content %}
 <a class="btn btn-primary mb-3" href="{% url 'tasks:create' %}">
     {% translate "Create a task" %}

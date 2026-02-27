@@ -1,14 +1,6 @@
 {% extends "layouts/application.html" %}
 {% load i18n %}
 
-{% block title %}
-    {% translate 'Statuses' %}
-{% endblock %}
-
-{% block header %}
-    {% translate 'Statuses' %}
-{% endblock %}
-
 {% block content %}
 <a class="btn btn-primary mb-3" href="{% url 'statuses:create' %}">{% translate 'Create a status' %}</a>
 

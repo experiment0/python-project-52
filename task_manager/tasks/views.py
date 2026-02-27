@@ -25,11 +25,17 @@ class IndexView(LoginRequiredMixinWithMessage, FilterView):
     context_object_name = "tasks"
     filter_class = TaskFilter
     filterset_fields = ["status", "author", "executor", "labels"]
+    extra_context = {
+        "title": _("Tasks"),
+    }
   
 
 class TaskDetail(LoginRequiredMixinWithMessage, DetailView):
     model = Task
     template_name = "tasks/detail.html"
+    extra_context = {
+        "title": _("View task"),
+    }
 
 
 class TaskCreate(
@@ -40,6 +46,9 @@ class TaskCreate(
     template_name = "tasks/create.html"
     success_url = reverse_lazy("tasks:index")
     success_message = _("Task successfully created")
+    extra_context = {
+        "title": _("Create a task"),
+    }
     
     def form_valid(self, form):
         # Перед валидацией формы устанавливаем автором задачи
@@ -56,6 +65,9 @@ class TaskUpdate(
     template_name = "tasks/update.html"
     success_url = reverse_lazy("tasks:index")
     success_message = _("Task changed successfully")
+    extra_context = {
+        "title": _("Changing a task"),
+    }
 
 
 class PermissionRequiredMixinForAuthorshipVerification(PermissionRequiredMixin):
@@ -106,9 +118,12 @@ class TaskDelete(
     # чтобы не падал вызов родительского метода has_permission.
     permission_required = ["tasks.delete_task"]
     model = Task
-    template_name = "tasks/delete.html"
+    template_name = "layouts/confirm_delete.html"
     login_url = reverse_lazy("login")
     redirect_field_name = None
+    extra_context = {
+        "title": _("Deleting a task"),
+    }
     
     def get_success_url(self):
         messages.add_message(

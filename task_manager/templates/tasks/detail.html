@@ -2,11 +2,7 @@
 {% load i18n %}
 
 {% block title %}
-    {% translate 'View task' %} "{{ task.name }}"
-{% endblock %}
-
-{% block header %}
-    {% translate 'View task' %}
+    {{ title }} "{{ task.name }}"
 {% endblock %}
 
 {% block content %}

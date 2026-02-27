@@ -19,8 +19,11 @@ from task_manager.views import LoginRequiredMixinWithMessage
 class IndexView(LoginRequiredMixinWithMessage, ListView):
     model = Label
     template_name = "labels/index.html"
+    extra_context = {
+        "title": _("Labels"),
+    }
     
-    
+
 class LabelCreate(
     LoginRequiredMixinWithMessage, SuccessMessageMixin, CreateView
 ):
@@ -29,6 +32,9 @@ class LabelCreate(
     template_name = "labels/create.html"
     success_url = reverse_lazy("labels:index")
     success_message = _("Label successfully created")
+    extra_context = {
+        "title": _("Create a label"),
+    }
 
 
 class LabelUpdate(
@@ -39,14 +45,20 @@ class LabelUpdate(
     template_name = "labels/update.html"
     success_url = reverse_lazy("labels:index")
     success_message = _("Label changed successfully")
+    extra_context = {
+        "title": _("Updating label"),
+    }
 
 
 class LabelDelete(
     LoginRequiredMixinWithMessage, DeleteView
 ):
     model = Label
-    template_name = "labels/delete.html"
+    template_name = "layouts/confirm_delete.html"
     success_url = reverse_lazy("labels:index")
+    extra_context = {
+        "title": _("Deleting a label"),
+    }
     
     def form_valid(self, form):
         success_url = self.get_success_url()

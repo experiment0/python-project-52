@@ -1,14 +1,6 @@
 {% extends "layouts/form.html" %}
 {% load i18n %}
 
-{% block title %}
-    {% translate 'Updating user' %}
-{% endblock %}
-
-{% block header %}
-    {% translate 'Updating user' %}
-{% endblock %}
-
 {% block buttons %}
     <input class="btn btn-primary" type="submit" value="{% translate 'Update' %}">
     <a href="{% url 'users:delete' user.id %}" class="btn btn-danger">
