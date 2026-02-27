@@ -9,7 +9,8 @@
             "description": "Описание задачи 1.",
             "status": 1,
             "author": 15,
-            "executor": null
+            "executor": null,
+            "labels": []
         }
     },
     {
@@ -22,7 +23,8 @@
             "description": "Описание задачи 2.",
             "status": 1,
             "author": 15,
-            "executor": 15
+            "executor": 15,
+            "labels": [1]
         }
     },
     {
@@ -35,7 +37,8 @@
             "description": "Описание задачи 3.",
             "status": 1,
             "author": 15,
-            "executor": 1
+            "executor": 1,
+            "labels": [1]
         }
     },
     {
@@ -48,7 +51,8 @@
             "description": "Описание задачи 4.",
             "status": 1,
             "author": 1,
-            "executor": 15
+            "executor": 15,
+            "labels": []
         }
     }
 ]

@@ -12,7 +12,7 @@ class TestCaseAdvanced(TestCase):
     """
     
     # Указываем имена фикстур для загрузки в БД
-    fixtures = ["users.json", "statuses.json", "tasks.json"]
+    fixtures = ["users.json", "statuses.json", "tasks.json", "labels.json"]
     
     @classmethod
     def setUpTestData(cls):
@@ -38,6 +38,16 @@ class TestCaseAdvanced(TestCase):
             dict: данные существующего статуса, не привязанного к задачам
         """
         return self.test_data["statuses"]["existing_free_task"]
+    
+    @property
+    def _exist_label(self) -> dict:
+        """Возвращает из фикстуры данные существующей метки, 
+        не привязанной к задачам.
+
+        Returns:
+            dict: данные существующей метки, не привязанной к задачам
+        """
+        return self.test_data["labels"]["existing_free_task"]
     
     @property
     def _exist_task(self) -> dict:

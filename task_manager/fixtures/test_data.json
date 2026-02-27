@@ -33,20 +33,33 @@
       "name": "created"
     }
   },
+  "labels": {
+    "new": {
+      "name": "question"
+    },
+    "existing_free_task": {
+      "name": "duplicate"
+    },
+    "existing_related_task": {
+      "name": "documentation"
+    }
+  },
   "tasks": {
     "new": {
       "name": "Задача 5",
       "description": "Описание задачи 5.",
       "status": 1,
       "author": 18,
-      "executor": 1
+      "executor": 1,
+      "labels": [1]
     },
     "existing": {
       "name": "Задача 2",
       "description": "Описание задачи 2.",
       "status": 1,
       "author": 15,
-      "executor": 15
+      "executor": 15,
+      "labels": [1]
     }
   }
 }
