@@ -30,6 +30,14 @@ test:
 .PHONY: check
 check: lint test
 
+# Проверяет покрытие кода тестами и формирует отчет в файле coverage.xml
+# Далее этот файл использует SonarCloud для анализа
+.PHONY: test-coverage
+test-coverage:
+	coverage run manage.py test
+	coverage report -m --include=task_manager/* --omit=task_manager/settings.py
+	coverage xml --include=task_manager/* --omit=task_manager/settings.py
+
 # Создает файл task_manager/locale/ru/LC_MESSAGES/django.po для перевода сообщений
 .PHONY: messages
 messages:

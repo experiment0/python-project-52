@@ -1,11 +1,20 @@
 from typing import Optional
 
-from django.test import TestCase
+from django.test import TestCase, modify_settings
 from django.urls import reverse
 
 from task_manager.utils import FixtureDataType, get_test_data
 
+remove_rollbar = modify_settings(
+    MIDDLEWARE={
+        "remove":
+            ["rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
+            "task_manager.rollbar_middleware.CustomRollbarNotifierMiddleware"]
+    }
+)
 
+
+@remove_rollbar
 class TestCaseAdvanced(TestCase):
     """Класс содержит элементы, общие для всех тестов
     (общие фикстуры, аутентификацию пользователя)
