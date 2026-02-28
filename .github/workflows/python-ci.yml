@@ -38,9 +38,30 @@ jobs:
       # Прогоним проверки тестов и линтера
       - name: Run linter and tests
         env:
-          DEBUG: ${{ secrets.DEBUG }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          ROLLBAR_ACCESS_TOKEN: ${{ secrets.ROLLBAR_ACCESS_TOKEN }}
         run: |
           make check
+
+      # Сформируем отчет о покрытии тестами
+      # Отчет попадет в файл coverage.xml и дальше будет использован сканером SonarCloud
+      - name: Run test coverage
+        run: |
+          make test-coverage
+      
+      # Запускаем работу сканера SonarCloud
+      - name: SonarQubeScan
+        # https://github.com/SonarSource/sonarqube-scan-action
+        uses: SonarSource/sonarqube-scan-action@v6
+        # Токен задается в интерфейсе github
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        # Аргументы, с которыми вызываем скрипт сканера
+        with:
+          # projectBaseDir: task_manager
+          args: >
+            -Dsonar.projectKey=experiment0_python-project-52
+            -Dsonar.organization=sdfja3905802-cxgw34923fsf
+            -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.sources=task_manager/
+            -Dsonar.test.exclusions=task_manager/settings.py
+            -Dsonar.python.version=3.13
