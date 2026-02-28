@@ -1,0 +1,46 @@
+# Произвольное имя workflow
+name: Python CI
+
+# На какие события запускается workflow
+on:
+  - push
+  - pull_request
+
+jobs:
+  # Произвольное имя задания (в нашем случае "сборка")
+  build:
+    # Операционная система, на которой все будет запущено
+    runs-on: ubuntu-latest
+
+    # Список шагов, которые нужно выполнить
+    steps:
+      # uses запускает указанный экшн
+      # Экшн версии v4 клонирует репозиторий
+      - uses: actions/checkout@v4
+
+      # Произвольное имя шага
+      - name: Set up Python
+        # Запускаем экшн установки python
+        uses: actions/setup-python@v5
+        with:
+          # Для установки указываем версию python 3.13
+          python-version: "3.13"
+
+      # Установка зависимостей проекта
+      - name: Install dependencies
+        # run выполняет произвольную bash команду
+        # Команды make из Makefile используют uv, поэтому установим также uv
+        # И установим библиотеки для проекта
+        run: |
+          pip install uv
+          make install
+
+      # Прогоним проверки тестов и линтера
+      - name: Run linter and tests
+        env:
+          DEBUG: ${{ secrets.DEBUG }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          ROLLBAR_ACCESS_TOKEN: ${{ secrets.ROLLBAR_ACCESS_TOKEN }}
+        run: |
+          make check
