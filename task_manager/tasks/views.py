@@ -20,6 +20,7 @@ from task_manager.views import LoginRequiredMixinWithMessage
 
 TASKS_INDEX_URL_NAME = "tasks:index"
 
+
 class IndexView(LoginRequiredMixinWithMessage, FilterView):
     model = Task
     template_name = "tasks/index.html"

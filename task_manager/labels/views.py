@@ -17,6 +17,7 @@ from task_manager.views import LoginRequiredMixinWithMessage
 
 LABELS_INDEX_URL_NAME = "labels:index"
 
+
 class IndexView(LoginRequiredMixinWithMessage, ListView):
     model = Label
     template_name = "labels/index.html"

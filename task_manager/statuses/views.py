@@ -15,7 +15,6 @@ from task_manager.statuses.forms import TaskStatusForm
 from task_manager.statuses.models import TaskStatus
 from task_manager.views import LoginRequiredMixinWithMessage
 
-
 STATUSES_INDEX_URL_NAME = "statuses:index"
 
 

@@ -19,7 +19,6 @@ from task_manager.users.forms import (
     UserUpdateAdvancedForm,
 )
 
-
 USERS_INDEX_PAGE_URL = "users:index"
 
 
