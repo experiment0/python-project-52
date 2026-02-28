@@ -16,6 +16,9 @@ from task_manager.statuses.models import TaskStatus
 from task_manager.views import LoginRequiredMixinWithMessage
 
 
+STATUSES_INDEX_URL_NAME = "statuses:index"
+
+
 class IndexView(LoginRequiredMixinWithMessage, ListView):
     model = TaskStatus
     template_name = "statuses/index.html"
@@ -30,7 +33,7 @@ class TaskStatusCreate(
     model = TaskStatus
     form_class = TaskStatusForm
     template_name = "statuses/create.html"
-    success_url = reverse_lazy("statuses:index")
+    success_url = reverse_lazy(STATUSES_INDEX_URL_NAME)
     success_message = _("Status successfully created")
     extra_context = {
         "title": _("Create a status"),
@@ -43,7 +46,7 @@ class TaskStatusUpdate(
     model = TaskStatus
     form_class = TaskStatusForm
     template_name = "statuses/update.html"
-    success_url = reverse_lazy("statuses:index")
+    success_url = reverse_lazy(STATUSES_INDEX_URL_NAME)
     success_message = _("Status changed successfully")
     extra_context = {
         "title": _("Updating status"),
@@ -55,7 +58,7 @@ class TaskStatusDelete(
 ):
     model = TaskStatus
     template_name = "layouts/confirm_delete.html"
-    success_url = reverse_lazy("statuses:index")
+    success_url = reverse_lazy(STATUSES_INDEX_URL_NAME)
     extra_context = {
         "title": _("Deleting a status"),
     }

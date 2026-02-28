@@ -15,6 +15,7 @@ from task_manager.labels.forms import LabelForm
 from task_manager.labels.models import Label
 from task_manager.views import LoginRequiredMixinWithMessage
 
+LABELS_INDEX_URL_NAME = "labels:index"
 
 class IndexView(LoginRequiredMixinWithMessage, ListView):
     model = Label
@@ -30,7 +31,7 @@ class LabelCreate(
     model = Label
     form_class = LabelForm
     template_name = "labels/create.html"
-    success_url = reverse_lazy("labels:index")
+    success_url = reverse_lazy(LABELS_INDEX_URL_NAME)
     success_message = _("Label successfully created")
     extra_context = {
         "title": _("Create a label"),
@@ -43,7 +44,7 @@ class LabelUpdate(
     model = Label
     form_class = LabelForm
     template_name = "labels/update.html"
-    success_url = reverse_lazy("labels:index")
+    success_url = reverse_lazy(LABELS_INDEX_URL_NAME)
     success_message = _("Label changed successfully")
     extra_context = {
         "title": _("Updating label"),
@@ -55,7 +56,7 @@ class LabelDelete(
 ):
     model = Label
     template_name = "layouts/confirm_delete.html"
-    success_url = reverse_lazy("labels:index")
+    success_url = reverse_lazy(LABELS_INDEX_URL_NAME)
     extra_context = {
         "title": _("Deleting a label"),
     }

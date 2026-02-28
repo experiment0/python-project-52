@@ -11,7 +11,7 @@ class Task(TimestampedModel):
     name = models.CharField(
         _("name"), max_length=150, unique=True, null=False, blank=False
     )
-    description = models.TextField(_("description"), null=True, blank=True)
+    description = models.TextField(_("description"), blank=True)
     status = models.ForeignKey(
         TaskStatus, 
         on_delete=models.RESTRICT, 

@@ -20,6 +20,9 @@ from task_manager.users.forms import (
 )
 
 
+USERS_INDEX_PAGE_URL = "users:index"
+
+
 class IndexView(ListView):
     model = User
     template_name = "users/index.html"
@@ -55,7 +58,7 @@ class PermissionRequiredMixinForAuthorshipVerification(PermissionRequiredMixin):
                 _("You do not have permission to modify another user.")
             )
             return HttpResponseRedirect(
-                resolve_url("users:index")
+                resolve_url(USERS_INDEX_PAGE_URL)
             )
     
     def has_permission(self):
@@ -93,7 +96,7 @@ class UserUpdate(PermissionRequiredMixinForAuthorshipVerification, UpdateView):
             messages.SUCCESS,
             _("User successfully changed")
         )
-        return reverse_lazy("users:index")
+        return reverse_lazy(USERS_INDEX_PAGE_URL)
 
 
 class UserDelete(PermissionRequiredMixinForAuthorshipVerification, DeleteView):
@@ -104,7 +107,7 @@ class UserDelete(PermissionRequiredMixinForAuthorshipVerification, DeleteView):
     template_name = "layouts/confirm_delete.html"
     login_url = reverse_lazy("login")
     redirect_field_name = None
-    success_url = reverse_lazy("users:index")
+    success_url = reverse_lazy(USERS_INDEX_PAGE_URL)
     extra_context = {
         "title": _("Deleting a user"),
     }

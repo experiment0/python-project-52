@@ -18,6 +18,7 @@ from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
 from task_manager.views import LoginRequiredMixinWithMessage
 
+TASKS_INDEX_URL_NAME = "tasks:index"
 
 class IndexView(LoginRequiredMixinWithMessage, FilterView):
     model = Task
@@ -43,7 +44,7 @@ class TaskCreate(
     model = Task
     form_class = TaskForm
     template_name = "tasks/create.html"
-    success_url = reverse_lazy("tasks:index")
+    success_url = reverse_lazy(TASKS_INDEX_URL_NAME)
     success_message = _("Task successfully created")
     extra_context = {
         "title": _("Create a task"),
@@ -62,7 +63,7 @@ class TaskUpdate(
     model = Task
     form_class = TaskForm
     template_name = "tasks/update.html"
-    success_url = reverse_lazy("tasks:index")
+    success_url = reverse_lazy(TASKS_INDEX_URL_NAME)
     success_message = _("Task changed successfully")
     extra_context = {
         "title": _("Changing a task"),
@@ -85,7 +86,7 @@ class PermissionRequiredMixinForAuthorshipVerification(PermissionRequiredMixin):
                 _("A task can only be deleted by its author.")
             )            
             return HttpResponseRedirect(
-                resolve_url("tasks:index")
+                resolve_url(TASKS_INDEX_URL_NAME)
             )
     
     def has_permission(self):
@@ -130,4 +131,4 @@ class TaskDelete(
             messages.SUCCESS,
             _("The task was successfully deleted.")
         )        
-        return reverse_lazy("tasks:index")
+        return reverse_lazy(TASKS_INDEX_URL_NAME)
