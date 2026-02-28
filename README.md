@@ -5,6 +5,7 @@
 ### Статусы workflow actions
 
 [![Actions Status](https://github.com/experiment0/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/experiment0/python-project-52/actions)
+[![Python CI](https://github.com/experiment0/python-project-52/actions/workflows/python-ci.yml/badge.svg)](https://github.com/experiment0/python-project-52/actions/workflows/python-ci.yml)
 
 ## О проекте
 
