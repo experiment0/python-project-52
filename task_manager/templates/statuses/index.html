@@ -2,7 +2,9 @@
 {% load i18n %}
 
 {% block content %}
-<a class="btn btn-primary mb-3" href="{% url 'statuses:create' %}">{% translate 'Create a status' %}</a>
+<a class="btn btn-primary mb-3" href="{% url 'statuses:create' %}" role="button">
+    {% translate 'Create a status' %}
+</a>
 
 <table class="table table-striped">
     <thead>
