@@ -72,6 +72,5 @@ jobs:
             -Dsonar.projectKey=experiment0_python-project-52
             -Dsonar.organization=sdfja3905802-cxgw34923fsf
             -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.sources=task_manager/
             -Dsonar.test.exclusions=task_manager/settings.py
             -Dsonar.python.version=3.13
