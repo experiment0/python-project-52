@@ -17,6 +17,9 @@ jobs:
       # uses запускает указанный экшн
       # Экшн версии v4 клонирует репозиторий
       - uses: actions/checkout@v4
+        with:
+          # SonarQube: Disabling shallow clones is recommended for improving the relevancy of reporting
+          fetch-depth: 0
 
       # Произвольное имя шага
       - name: Set up Python
@@ -55,15 +58,16 @@ jobs:
           make test-coverage
 
       # Запускаем работу сканера SonarCloud
-      - name: SonarQubeScan
-        # https://github.com/SonarSource/sonarqube-scan-action
+      - name: SonarQube Scan
+        # https://github.com/marketplace/actions/official-sonarqube-scan
         uses: SonarSource/sonarqube-scan-action@v6
         # Токен задается в интерфейсе github
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
         # Аргументы, с которыми вызываем скрипт сканера
         with:
-          # projectBaseDir: task_manager
+          projectBaseDir: task_manager
           args: >
             -Dsonar.projectKey=experiment0_python-project-52
             -Dsonar.organization=sdfja3905802-cxgw34923fsf
