@@ -1,5 +1,5 @@
 # Произвольное имя workflow
-name: Python CI
+name: Django CI
 
 # На какие события запускается workflow
 on:

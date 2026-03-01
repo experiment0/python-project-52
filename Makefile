@@ -34,9 +34,9 @@ check: lint test
 # Далее этот файл использует SonarCloud для анализа
 .PHONY: test-coverage
 test-coverage:
-	coverage run manage.py test
-	coverage report -m --include=task_manager/* --omit=task_manager/settings.py
-	coverage xml --include=task_manager/* --omit=task_manager/settings.py
+	uv run coverage run --source=task_manager manage.py test task_manager
+	uv run coverage report -m --include=task_manager/* --omit=task_manager/settings.py
+	uv run coverage xml --include=task_manager/* --omit=task_manager/settings.py
 
 # Создает файл task_manager/locale/ru/LC_MESSAGES/django.po для перевода сообщений
 .PHONY: messages
