@@ -1,6 +1,19 @@
 {% extends "layouts/application.html" %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block header %}
     {% translate "Task manager" %}
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body bg-light">
+            {% if LANGUAGE_CODE == "ru" %}
+                {% include "layouts/app_description_ru.html" %}
+            {% else %}
+                {% include "layouts/app_description_en.html" %}
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

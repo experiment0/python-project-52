@@ -8,13 +8,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}{{ title }}{% endblock %} | {% translate 'Task manager' %}</title>
-        {% bootstrap_css %}        
+        <link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=99263&format=png&color=228BE6" />
+        {% bootstrap_css %}
     </head>
 
-    <body>
-        {% include "layouts/navigation.html" %}
-        
-        <div class="container mt-4 mb-5">
+    <body class="d-flex flex-column min-vh-100">
+        <header>
+            {% include "layouts/navigation.html" %}
+        </header>
+        <main class="container mt-4 mb-5  flex-grow-1">
             {% bootstrap_messages %}
 
             <h1 class="my-4">
@@ -22,7 +24,10 @@
             </h1>
 
             {% block content %}{% endblock %}
-        </div>
+        </main>
+        <footer>
+            {% include "layouts/footer.html" %}
+        </footer>
         {% bootstrap_javascript %}
     </body>
 

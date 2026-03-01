@@ -1,0 +1,19 @@
+<h4>Description</h4>
+<hr>
+<p>
+    This web application allows users to
+    <a href="{% url 'users:create' %}">register</a>
+    and create <a href="{% url 'tasks:index' %}">tasks</a>.
+    <br>
+    Tasks can be assigned
+    <a href="{% url 'statuses:index' %}">statuses</a>
+    and <a href="{% url 'labels:index' %}">labels</a>.
+</p>
+
+<ul>
+    <li>Only registered users can create tasks, statuses, and labels.</li>
+    <li>Only users can edit and update their personal information.</li>
+    <li>A task can only have one status, and the number of labels is unlimited.</li>
+    <li>Only the creator can delete a task.</li>
+    <li>A user, status, or label cannot be deleted if they are associated with a task.</li>
+</ul>
