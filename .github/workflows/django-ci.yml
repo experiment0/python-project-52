@@ -47,6 +47,10 @@ jobs:
       # Сформируем отчет о покрытии тестами
       # Отчет попадет в файл coverage.xml и дальше будет использован сканером SonarCloud
       - name: Run test coverage
+        env:
+          DEBUG: ${{ secrets.DEBUG }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
           make test-coverage
 

@@ -5,9 +5,10 @@
 ### Статусы workflow actions
 
 [![Actions Status](https://github.com/experiment0/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/experiment0/python-project-52/actions)
-[![Python CI](https://github.com/experiment0/python-project-52/actions/workflows/python-ci.yml/badge.svg)](https://github.com/experiment0/python-project-52/actions/workflows/python-ci.yml)
+[![Django CI](https://github.com/experiment0/python-project-52/actions/workflows/django-ci.yml/badge.svg)](https://github.com/experiment0/python-project-52/actions/workflows/django-ci.yml)
 
 ### Статусы [SonarQube](https://sonarcloud.io/)
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=experiment0_python-project-52&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=experiment0_python-project-52)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=experiment0_python-project-52&metric=bugs)](https://sonarcloud.io/summary/new_code?id=experiment0_python-project-52)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=experiment0_python-project-52&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=experiment0_python-project-52)
